@@ -1,74 +1,55 @@
-# 🎈 Premium Birthday Greeting Template
+# 🎈 Modern & Dreamy Birthday Template 
 
-A gorgeous, dreamy, and highly interactive birthday celebration website built with **React**, **TypeScript**, **Tailwind CSS**, & **Framer Motion (Motion)**. 
+Apne special bestie, partner ya sibling ke liye ek cinematic, highly interactive birthday celebration website banayein — **Bina kisi coding ke!** 
 
-This repository is structured as a fully customizable template. You can fork this project, change the texts and photos in a single file, and deploy it to **Vercel** or **Netlify** in under 5 minutes!
-
----
-
-## 🚀 How to Customize (Quick Start)
-
-You do **not** need to search through coding files to customize the website. Everything is centralized in **one single file**:
-
-👉 Open and edit: **`src/config/birthdayData.ts`**
-
-### ✍️ 1. Updating Texts & Names
-In `src/config/birthdayData.ts`, you can configure:
-- **`meta`**: Page titles & SEO description metadata.
-- **`hero`**: Main page title, target person's name, intro welcome lines, and CTA buttons.
-- **`journey`**: Story titles and paragraphs for each segment.
-- **`gallery`**: Custom grid headings, YouTube background sound loop IDs, and details.
-- **`finale`**: Main wishing messages, custom poems, and creator credits.
-
-### 📸 2. Adding Custom Images
-By default, the template triggers beautiful, modern animated **cards with placeholder text** indicating exactly what slide and location they represent. 
-
-To replace placeholders with actual images:
-1. Save your custom images (JPEG/PNG) in the **`src/assets/`** directory.
-2. Import them at the top of code files or set the image URL path inside the configurations:
-   
-   **For the Journey Timeline (`src/routes/journey.tsx`):**
-   ```typescript
-   import yourPic from "@/assets/your-pic.jpg";
-   // Set block.image to your imported photo inside birthdayData.journey
-   ```
-
-   **For the Polaroid Gallery (`src/routes/gallery.tsx`):**
-   ```typescript
-   import memoryPic from "@/assets/memory-1.jpg";
-   // Link memoryPic to the src property of the target image inside the images array mapping.
-   ```
-
-### 🎵 3. Swapping Background Music
-The background audio is powered by a quiet YouTube background player:
-1. Go to YouTube and copy the video ID of your favorite track (e.g. for `https://www.youtube.com/watch?v=g1uEqR5eFMo`, the ID is `g1uEqR5eFMo`).
-2. Update the `youtubeMusicId` in `src/config/birthdayData.ts` with your custom ID!
+Aapko code seekhne ya files me edits dhoondhne ki bilkul zaroorat nahi hai. Hum code edit karne ke liye humare smart AI coding assistant (**Antigravity**) ka use karenge! Aap bas instructions flow follow kijiye:
 
 ---
 
-## 🛠️ Local Development
+## 🚀 Step-by-Step Guide for Absolute Beginners
 
-To run this project locally on your machine:
+### 🛠️ Step 1: Open Terminal & Clone Project
+Sabse pehle, apne **Antigravity / Cursor** editor ko open kijiye. Iske built-in sidebar ya built-in terminal me ye commands copy-paste karke execute kijiye:
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Start the local server:**
-   ```bash
-   npm run dev
-   ```
-3. **Build optimized production version:**
-   ```bash
-   npm run build
-   ```
+```bash
+# 1. Project directory clone karein
+git clone https://github.com/mohitgupta-hbtu/birthday-template.git
+
+# 2. Project folder me enter karein
+cd birthday-template
+
+# 3. Dependencies install karein
+npm i
+
+# 4. Local dev site start karein
+npm run dev
+```
+
+> 💡 **Node.js or Installation Errors?**  
+> Agar aapke computer me **Node.js download nahi hai** ya commands run karte time koi bhi error (jaise name resolutions, missing dependencies, variables issues) aaye, toh bas terminal/chat me **Antigravity agent se kahein**:  
+> *"Hey Antigravity, please download Node.js and fix all command execution errors."*  
+> AI agent auto-download, local node path setup, aur initialization khud he kar dega!
 
 ---
 
-## 🌐 Free 1-Click Deployment
+### 🎨 Step 2: Screen Preview & AI Auto-Customization
+Jaise he `npm run dev` start ho jaye, localhost URL copy karke browser me website preview open karein. 
 
-Once you have pushed your customized template to GitHub:
-1. Go to **[Vercel](https://vercel.com/)** or **[Netlify](https://www.netlify.com/)**.
-2. Connect your GitHub repository.
-3. Keep default settings (`npm run build` build command, `dist` output directory).
-4. Click **Deploy**! Share the live link with your special someone. ❤️
+**Ab customise karne ke liye:**
+1. Website par jis section ko aap change karna chahte hain (jaise: Name introduction card, slideshow details, story chapters, or music video player), us component ki **website preview screenshot** lein.
+2. Us screenshot ko **Antigravity / Cursor** chat widget me paste/attach karein.
+3. AI Agent ko simple language me instructions dein:
+   - *"Hey Antigravity, please replace the name in this landing page screenshot with my friend 'Rohit'."*
+   - *"Please swap the playlist video ID of background audio to link my favorite track: [YouTube Video ID]."*
+   - *"Please change this story section details according to the text in this image..."*
+
+Humara system configuration (centralized variables `src/config/birthdayData.ts` database system) itna fast and organized hai ki AI automatic locations trace karke files instantly update kar dega!
+
+---
+
+## ⚡ Step 3: Free 1-Click Deployment (Hosting)
+Customization final hone ke baad, website live karne ke liye:
+1. Apne GitHub workspace settings se code push karein.
+2. **[Vercel](https://vercel.com/)** or **[Netlify](https://www.netlify.com/)** par jaakar repository link connect karein.
+3. Build parameters ko default (`npm run build`, output: `dist`) rehne dein aur **Deploy** button click karein.
+4. Live link special person ke sath share karein aur unhe surprise dein! ❤️
