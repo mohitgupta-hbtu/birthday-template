@@ -35,8 +35,20 @@ export default function StoryBlock({ image, imageAlt, side, children, tilt = -3 
             "0 30px 80px oklch(0.55 0.22 295 / 0.35), 0 0 60px oklch(0.78 0.18 350 / 0.25), inset 0 0 0 1px oklch(1 0 0 / 0.4)",
         }}
       >
-        <img src={image} alt={imageAlt} className="w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.55_0.22_295/0.25)] via-transparent to-[oklch(0.95_0.06_80/0.15)]" />
+        {image ? (
+          <img src={image} alt={imageAlt} className="w-full h-full object-cover" loading="lazy" />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none bg-white/5 hover:bg-white/10 text-white/80 backdrop-blur-sm transition-all duration-300">
+            <div className="w-14 h-14 rounded-full bg-white/15 border border-white/30 flex items-center justify-center mb-3 shadow-xl backdrop-blur-sm animate-pulse">
+              <Star className="w-7 h-7 text-white/80" />
+            </div>
+            <h3 className="font-bold text-xs tracking-widest uppercase text-white/95">{imageAlt || "Photo Placeholder"}</h3>
+            <p className="text-[10px] text-white/60 max-w-[220px] mt-1.5 leading-relaxed">
+              Add your personal picture in assets to display here.
+            </p>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.55_0.22_295/0.25)] via-transparent to-[oklch(0.95_0.06_80/0.15)] pointer-events-none" />
         {/* glow border */}
         <div className="pointer-events-none absolute inset-0 rounded-[2rem]" style={{ boxShadow: "inset 0 0 40px oklch(0.92 0.12 85 / 0.3)" }} />
       </motion.div>

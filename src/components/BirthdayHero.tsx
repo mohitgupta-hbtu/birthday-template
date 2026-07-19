@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Heart, Sparkles, Star } from "lucide-react";
-import img1 from "@/assets/new-1.jpg";
-import img2 from "@/assets/new-1-wings.jpg";
-import img3 from "@/assets/fairy-image.jpeg";
-import img4 from "@/assets/new-4.png";
-
-const images = [img1, img2, img3, img4];
+import { birthdayData } from "@/config/birthdayData";
+const SLIDES_COUNT = 4;
 
 const Decoration = ({
   className,
@@ -68,7 +64,7 @@ export default function BirthdayHero() {
   const [idx, setIdx] = useState(0);
 
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % images.length), 3800);
+    const t = setInterval(() => setIdx((i) => (i + 1) % SLIDES_COUNT), 3800);
     return () => clearInterval(t);
   }, []);
 
@@ -102,12 +98,7 @@ export default function BirthdayHero() {
       </Decoration>
 
       {/* nav */}
-      <nav className="relative z-20 flex items-center justify-between px-6 md:px-14 py-6">
-        <div className="text-[oklch(0.45_0.24_305)] font-script text-2xl">
-          twin.day
-        </div>
-
-      </nav>
+      <nav className="relative z-20 flex items-center justify-between px-6 md:px-14 py-6" />
 
       {/* content */}
       <div className="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center px-6 md:px-14 pb-20 pt-6">
@@ -124,20 +115,24 @@ export default function BirthdayHero() {
 
           <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-white/60 animate-float-slow" style={{ background: "linear-gradient(135deg, oklch(0.85 0.12 350), oklch(0.78 0.14 295), oklch(0.82 0.1 270), oklch(0.88 0.08 320))" }}>
             <AnimatePresence mode="wait">
-              <motion.img
-                key={idx < images.length ? idx : 0}
-                src={images[idx < images.length ? idx : 0]}
-                alt="Birthday memory"
-                width={768}
-                height={960}
-                initial={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
-                transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
+                exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none bg-black/10 text-white"
+              >
+                <div className="w-16 h-16 rounded-full bg-white/15 border border-white/30 flex items-center justify-center mb-4 shadow-xl backdrop-blur-sm animate-pulse">
+                  <Star className="w-8 h-8 text-white/80" />
+                </div>
+                <h3 className="font-bold text-xs tracking-widest uppercase text-white/95">Photo Placeholder {idx + 1}</h3>
+                <p className="text-[10px] text-white/60 max-w-[220px] mt-2 leading-relaxed">
+                  Add image_{idx + 1} in folder directory to replace this slide preview card.
+                </p>
+              </motion.div>
             </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.55_0.22_295/0.3)] via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.55_0.22_295/0.3)] via-transparent to-transparent pointer-events-none" />
 
 
           </div>
@@ -145,16 +140,7 @@ export default function BirthdayHero() {
           {/* floating mini cards */}
 
 
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="absolute -top-4 -right-4 backdrop-blur-xl bg-white/60 border border-white/70 rounded-full px-4 py-2 shadow-xl flex items-center gap-2 animate-float-y"
-            style={{ animationDelay: "2s" }}
-          >
-            <Sparkles className="w-4 h-4 text-[oklch(0.55_0.22_295)]" />
-            <span className="text-xs font-semibold text-[oklch(0.35_0.18_295)]">100% baddie</span>
-          </motion.div>
+
         </motion.div>
 
         {/* RIGHT — content */}
@@ -165,7 +151,7 @@ export default function BirthdayHero() {
             transition={{ delay: 0.2 }}
             className="font-display italic text-[oklch(0.55_0.22_295)] tracking-[0.3em] text-xs md:text-sm mb-3"
           >
-            ✦ HAPPY BIRTHDAY ✦
+            {birthdayData.hero.subHeader}
           </motion.p>
 
           <motion.h1
@@ -174,7 +160,7 @@ export default function BirthdayHero() {
             transition={{ delay: 0.3, type: "spring", stiffness: 80 }}
             className="puffy-text font-black text-6xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tight"
           >
-            TWIN<span className="inline-block animate-float-y" style={{ ["--r" as never]: "8deg" }}>!</span>
+            {birthdayData.hero.puffyTitle}<span className="inline-block animate-float-y" style={{ ["--r" as never]: "8deg" }}>!</span>
           </motion.h1>
 
           <motion.div
@@ -184,23 +170,14 @@ export default function BirthdayHero() {
             className="mt-8 font-display text-lg md:text-xl leading-relaxed text-gradient-bday max-w-xl mx-auto lg:mx-0"
           >
             <p className="mb-4">
-              YEH HAI HAMARI PRIYE MITTAR <br />
-              <span className="font-script not-italic text-3xl md:text-4xl">BADDIE NANDINI SINGH</span>
+              Meet our wonderful friend <br />
+              <span className="font-script not-italic text-3xl md:text-4xl">{birthdayData.hero.targetName}</span>
             </p>
-            <p className="text-base md:text-lg mb-4">
-              INKE SLAY KARNE KA ANDAJ HI KUCH ALG HAI <br />
-              YE BAS HASTI HAI , HASTI HAI <br />
-              AUR SIRF HASTI HAI AND <br />
-              KHUSH RAHTI HAI
-            </p>
-            <p className="text-base md:text-lg mb-4">
-              YE TO HO GAYA <em>MISS BADDIE</em> KA <br />
-              CHOTA SA INTRO ✨
-            </p>
-            <p className="text-base md:text-lg">
-              AAJ HAM SAB KI PYARI BADDIE JII KA BIRTHDAY HAI, DEKHTE HAI <br />
-              AAGE KYA KYA MILTA HAI ... <span className="text-2xl">😁</span>
-            </p>
+            {birthdayData.hero.introParas.map((para, idx) => (
+              <p key={idx} className="text-base md:text-lg mb-4">
+                {para}
+              </p>
+            ))}
           </motion.div>
 
           {/* CTA */}
@@ -212,7 +189,7 @@ export default function BirthdayHero() {
           >
             <Link to="/journey" preload="intent" className="group relative btn-bday text-white font-semibold px-8 py-4 rounded-full flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_40px_oklch(0.55_0.22_295/0.5)]">
               <span className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition" />
-              <span className="relative tracking-wide">START JOURNEY</span>
+              <span className="relative tracking-wide">{birthdayData.hero.ctaText}</span>
               <span className="relative w-9 h-9 rounded-full bg-white/25 backdrop-blur flex items-center justify-center group-hover:translate-x-1 transition-transform">
                 <ArrowRight className="w-4 h-4" />
               </span>

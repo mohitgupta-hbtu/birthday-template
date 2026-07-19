@@ -4,15 +4,14 @@ import { ArrowLeft, Images, Sparkles } from "lucide-react";
 import AmbientBackground from "@/components/journey/AmbientBackground";
 import StoryBlock from "@/components/journey/StoryBlock";
 import StoryLines from "@/components/journey/StoryLines";
-import library from "@/assets/library.png";
-import twinMagic from "@/assets/twin-magic.png";
+import { birthdayData } from "@/config/birthdayData";
 
 export const Route = createFileRoute("/journey")({
   component: JourneyPage,
   head: () => ({
     meta: [
-      { title: "Our Journey — Twin Memories" },
-      { name: "description", content: "A dreamy cinematic walk through our memories together." },
+      { title: birthdayData.meta.journeyTitle },
+      { name: "description", content: birthdayData.meta.journeyDesc },
     ],
   }),
 });
@@ -47,40 +46,19 @@ function JourneyPage() {
         <ArrowLeft className="w-4 h-4" /> back
       </Link>
 
-      {/* PAGE 1 — Library to Masti */}
-      <SectionTitle chapter="CHAPTER ONE" title="LIBRARY → MASTI" />
+      <SectionTitle chapter={birthdayData.journey.chapter} title={birthdayData.journey.title} />
 
-      <StoryBlock image={library} imageAlt="Tagore Central Library" side="left" tilt={-4}>
-        <StoryLines
-          lines={[
-            "Ye hai hamari library,",
-            "aur yaha pe hamne bahut bakaiti ki —",
-            "aur hamare autism ki mulaqat yahi se hui.",
-            "Vaise to pehla discussion philosophy ka tha,",
-            "par phir hui bakaiti ki shuruwat —",
-            "break time ke mahaan concept se 🍵",
-            "Jabse hamara EQ aur humour badne laga,",
-            "aur IQ kam... aur phir hui ek chatpati dosti ki shuruwat ✦",
-          ]}
-        />
-      </StoryBlock>
-
-      <StoryBlock image={twinMagic} imageAlt="Me and my twin — magical sparkles" side="right" tilt={5}>
-        <StoryLines
-          lines={[
-            "Lagbhag ek achhi dosti ki shuruwat hui hogi 18–19 April 2026,",
-            "phir padai kam, break time jyada hone laga.",
-            "Sath mai pada bhi, hasa bhi,",
-            "aur ghooma bhi bahut — papa ke paise ke petrol se (hehehe ⛽).",
-            "Sabke mast nicknames rakhe,",
-            "bahut maje liye ek doosre ke.",
-            "Kuch bhi kaho, bahut jiya apan ne khulke,",
-            "bahut up and down dekhe, 1st year mai hi —",
-            "aur best part ki mujhe aap jaisi best HG mil gayi 💫",
-            "my lovely twin.",
-          ]}
-        />
-      </StoryBlock>
+      {birthdayData.journey.storyBlocks.map((block, idx) => (
+        <StoryBlock
+          key={idx}
+          image={block.image}
+          imageAlt={block.imageAlt}
+          side={block.side}
+          tilt={block.tilt}
+        >
+          <StoryLines lines={block.lines} />
+        </StoryBlock>
+      ))}
 
       {/* Gallery button — goes to /gallery route */}
       <motion.div

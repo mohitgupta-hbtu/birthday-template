@@ -2,14 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowLeft, Heart, Sparkles, Star } from "lucide-react";
 import nickBg from "@/assets/nick-bg.png";
-import hb from "@/assets/hb.jpeg";
+import { birthdayData } from "@/config/birthdayData";
 
 export const Route = createFileRoute("/finale")({
   component: FinalePage,
   head: () => ({
     meta: [
-      { title: "Finale — Twin Memories" },
-      { name: "description", content: "A beautiful ending to our story." },
+      { title: birthdayData.meta.finaleTitle },
+      { name: "description", content: birthdayData.meta.finaleDesc },
     ],
   }),
 });
@@ -59,7 +59,7 @@ function FinalePage() {
             textShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
           }}
         >
-          Happy Birthday Baddie!
+          {birthdayData.finale.headerTitle}
         </motion.h1>
       </div>
 
@@ -77,25 +77,25 @@ function FinalePage() {
           </div>
 
           <div className="mt-6 font-cassandra text-2xl md:text-3xl leading-relaxed text-[oklch(0.32_0.18_295)]">
-            <p className="mb-6">MAST ESAI HASTE AND KHUSH RAHNA , APNE AUTISM PAR CHAR LINE LIKHI THI...</p>
+            {birthdayData.finale.letterParagraphs.map((para, i) => (
+              <p key={i} className="mb-6">{para}</p>
+            ))}
 
-            <div className="border-t border-white/30 pt-6 mt-6">
-              <p className="mb-1">यहाँ हर शख़्स,</p>
-              <p className="mb-1">हर पल हादसा होने से डरता है।</p>
-              <p className="mb-1">खिलौना है जो मिट्टी के,</p>
-              <p className="mb-1">टूट जाने से डरता है।</p>
-              <p className="mb-1">मेरे दिल के किसी कोने में,</p>
-              <p className="mb-1">मासूम सा एक बच्चा</p>
-              <p className="mb-1">बड़ों की दुनिया देखकर,</p>
-              <p className="mb-6">बड़ा होने से डरता है...</p>
-            </div>
+            {birthdayData.finale.poem && birthdayData.finale.poem.length > 0 && (
+              <div className="border-t border-white/30 pt-6 mt-6">
+                {birthdayData.finale.poem.map((line, i) => (
+                  <p key={i} className="mb-1">{line}</p>
+                ))}
+              </div>
+            )}
 
-            <div className="border-t border-white/30 pt-6 mt-6">
-              <p className="mb-1">ESAI AUTISTIC AND BAKAIT BANE REHNA HAI</p>
-              <p className="mb-1">TEEN SAAL APAN KO BAHUT SARE KAAND KARNE HAI,</p>
-              <p className="mb-1">BAS ESAI SLAY KARTE RAHNA,</p>
-              <p className="mb-6">MY AUTISTIC TWIN ✨</p>
-            </div>
+            {birthdayData.finale.wishes && birthdayData.finale.wishes.length > 0 && (
+              <div className="border-t border-white/30 pt-6 mt-6">
+                {birthdayData.finale.wishes.map((line, i) => (
+                  <p key={i} className="mb-1">{line}</p>
+                ))}
+              </div>
+            )}
           </div>
         </motion.div>
 
@@ -108,12 +108,14 @@ function FinalePage() {
           <div className="relative inline-block">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-white/30 backdrop-blur-xl shadow-2xl rotate-[-3deg]" />
             <div className="absolute -inset-2 rounded-[2.25rem] bg-white/50 backdrop-blur-xl shadow-xl rotate-[2deg]" />
-            <div className="relative w-80 h-56 md:w-[800px] md:h-[440px] rounded-[2rem] overflow-hidden ring-1 ring-white/60 shadow-2xl mx-auto">
-              <img
-                src={hb}
-                alt="Creator"
-                className="w-full h-full object-cover object-[30%_center]"
-              />
+            <div className="relative w-80 h-56 md:w-[800px] md:h-[440px] rounded-[2rem] overflow-hidden ring-1 ring-white/60 shadow-2xl mx-auto bg-black/40">
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white/80 select-none">
+                <Sparkles className="w-12 h-12 text-white/50 mb-3 animate-pulse" />
+                <h4 className="font-bold text-xs tracking-widest uppercase mb-1">Final Memory Card</h4>
+                <p className="text-[10px] text-white/50 max-w-sm leading-normal">
+                  Add yours or their birthday group picture inside assets directory to render here.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -127,7 +129,7 @@ function FinalePage() {
           <div className="inline-flex items-center gap-3 backdrop-blur-xl bg-white/40 border border-white/60 rounded-full px-8 py-4 shadow-xl">
             <Star className="w-6 h-6 text-[oklch(0.55_0.22_295)] fill-[oklch(0.55_0.22_295)]" />
             <span className="font-display text-xl md:text-2xl text-[oklch(0.35_0.18_295)] tracking-wide">
-              CREATOR — CHIGMA HB
+              CREATOR — {birthdayData.finale.creatorName}
             </span>
             <Star className="w-6 h-6 text-[oklch(0.55_0.22_295)] fill-[oklch(0.55_0.22_295)]" />
           </div>
@@ -139,7 +141,7 @@ function FinalePage() {
           transition={{ delay: 1.2, duration: 1.5 }}
           className="font-cassandra text-lg md:text-xl text-[oklch(0.5_0.15_295)] pb-10"
         >
-          made with ❤️ for my baddie twin
+          {birthdayData.finale.footerText}
         </motion.p>
       </div>
     </main>

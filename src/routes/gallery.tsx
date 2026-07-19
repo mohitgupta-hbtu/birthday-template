@@ -3,36 +3,24 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ArrowLeft, ArrowRight, Heart, X, Sparkles } from "lucide-react";
 import galleryBg from "@/assets/gallery-bg.jpg";
-import tiniImg from "@/assets/tini.jpeg";
+import { birthdayData } from "@/config/birthdayData";
 
-// Gallery Images
-import img1 from "@/assets/gallery-top-1.jpg";
-import img2 from "@/assets/gallery-top-2.jpg";
-import img3 from "@/assets/gallery-3.jpg";
-import img4 from "@/assets/gallery-4.jpg";
-import img5 from "@/assets/gallery-new-5.jpeg";
-import img6 from "@/assets/gallery-new-6.jpeg";
-
-const images = [
-  { src: img1, alt: "Memory 1", delay: 0.1, tilt: -4 },
-  { src: img2, alt: "Memory 2", delay: 0.2, tilt: 2 },
-  { src: img3, alt: "Memory 3", delay: 0.3, tilt: -2 },
-  { src: img4, alt: "Memory 4", delay: 0.4, tilt: 4 },
-  { src: img5, alt: "Memory 5", delay: 0.5, tilt: -3 },
-  { src: img6, alt: "Memory 6", delay: 0.6, tilt: 3 },
-];
+const images = birthdayData.gallery.images.map((img: any) => ({
+  src: "", // Customize by setting URL/import path here inside configuration file if needed
+  ...img,
+}));
 
 export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
   head: () => ({
     meta: [
-      { title: "Gallery — Twin Memories" },
-      { name: "description", content: "A beautiful collection of our favorite moments." },
+      { title: birthdayData.meta.galleryTitle },
+      { name: "description", content: birthdayData.meta.galleryDesc },
     ],
   }),
 });
 
-const YT_ID = "g1uEqR5eFMo";
+const YT_ID = birthdayData.gallery.youtubeMusicId;
 
 function GalleryPage() {
   const [selected, setSelected] = useState<number | null>(null);
@@ -139,7 +127,7 @@ function GalleryPage() {
             textShadow: "0 4px 20px rgba(255, 215, 0, 0.4)",
           }}
         >
-          [Baddie Aura]
+          {birthdayData.gallery.headerTitle}
         </motion.h1>
       </div>
 
@@ -176,12 +164,22 @@ function GalleryPage() {
               <div
                 className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-white/60 shadow-inner z-10"
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+                {img.src ? (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-white/5 text-white/80 select-none group-hover:bg-white/10 transition-all duration-300">
+                    <Heart className="w-8 h-8 text-white/40 mb-2 animate-pulse" />
+                    <span className="text-[10px] font-bold tracking-widest uppercase text-white/95">{img.alt}</span>
+                    <span className="text-[8px] text-white/50 mt-1 leading-normal max-w-[150px]">
+                      Add custom image in assets list
+                    </span>
+                  </div>
+                )}
 
                 {/* romantic gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.68_0.2_295/0.6)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -225,11 +223,21 @@ function GalleryPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative p-2 md:p-4 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl">
-                <img
-                  src={images[selected].src}
-                  alt={images[selected].alt}
-                  className="w-full max-h-[80vh] object-contain rounded-2xl"
-                />
+                {images[selected].src ? (
+                  <img
+                    src={images[selected].src}
+                    alt={images[selected].alt}
+                    className="w-full max-h-[80vh] object-contain rounded-2xl"
+                  />
+                ) : (
+                  <div className="w-[80vw] max-w-[500px] aspect-[4/3] rounded-2xl bg-black/40 flex flex-col items-center justify-center text-white/80 p-8 text-center border border-white/15">
+                    <Sparkles className="w-14 h-14 text-white/60 mb-3 animate-pulse" />
+                    <h3 className="font-bold text-xs tracking-wider uppercase text-white">{images[selected].alt}</h3>
+                    <p className="text-[10px] text-white/50 max-w-xs mt-2 leading-relaxed">
+                      To customize this preview, upload a photo file and replace the source configuration in the workspace.
+                    </p>
+                  </div>
+                )}
                 <button
                   onClick={() => setSelected(null)}
                   className="absolute -top-4 -right-4 md:-top-6 md:-right-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-xl border border-white/50 flex items-center justify-center text-white hover:bg-white/40 hover:scale-110 transition-all shadow-[0_0_30px_oklch(0.55_0.22_295/0.5)]"
@@ -268,17 +276,22 @@ function GalleryPage() {
       {/* Floating Music Toggle Button */}
       <button
         onClick={togglePlay}
-        className="fixed bottom-6 right-6 z-40 w-24 h-24 rounded-full shadow-[0_8px_30px_oklch(0.55_0.22_295/0.5)] flex items-center justify-center overflow-hidden hover:shadow-[0_8px_40px_oklch(0.55_0.22_295/0.7)] hover:scale-110 active:scale-90 transition-all cursor-pointer"
+        className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-black/90 border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all cursor-pointer text-white"
+        title={playing ? "Pause Music" : "Play Music"}
       >
-        <img
-          src={tiniImg}
-          alt="Music"
-          className="w-full h-full object-cover"
+        <div
+          className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-zinc-800 via-zinc-900 to-black shadow-inner"
           style={{
-            animation: "spin 3s linear infinite",
+            animation: "spin 4s linear infinite",
             animationPlayState: playing ? "running" : "paused",
           }}
-        />
+        >
+          <div className="absolute inset-1 rounded-full border border-white/5" />
+          <div className="absolute inset-2 ml-px rounded-full border border-white/5" />
+          <div className="w-4 h-4 rounded-full bg-neutral-800 flex items-center justify-center border border-white/15">
+            <div className="w-1.5 h-1.5 rounded-full bg-neutral-950" />
+          </div>
+        </div>
       </button>
     </main>
   );
