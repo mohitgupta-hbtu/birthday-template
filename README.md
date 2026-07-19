@@ -47,9 +47,124 @@ Humara system configuration (centralized variables `src/config/birthdayData.ts` 
 
 ---
 
-## ⚡ Step 3: Free 1-Click Deployment (Hosting)
-Customization final hone ke baad, website live karne ke liye:
-1. Apne GitHub workspace settings se code push karein.
-2. **[Vercel](https://vercel.com/)** or **[Netlify](https://www.netlify.com/)** par jaakar repository link connect karein.
-3. Build parameters ko default (`npm run build`, output: `dist`) rehne dein aur **Deploy** button click karein.
-4. Live link special person ke sath share karein aur unhe surprise dein! ❤️
+## 📸 Visual Customization Guide
+
+Diye gaye templates me sections ko badalne ki guide:
+
+### 1. Main Hero Image Slider (Home Page)
+![Main Hero Slider](./readme-images/hero-slider-placeholder.png)
+
+**Yahan par jiske birthday hai, uski cute si photo lagayein!** ✨
+* **Description:** Website ke main landing page par rotating image slider hai jisme aap unki sabse cute ya beautiful photos toggle kar sakte hain.
+* **How to edit:** Apne images ko clone directory me add karein aur Antigravity se kahein: *"Hey Antigravity, please replace the hero image slider with my uploaded pictures"* or manual configurations `birthdayData.ts` me file import karke edit kar sakte hain.
+
+---
+
+### 2. Welcome Intro Text (Home Page)
+![Home Intro Text](./readme-images/hero-text-intro.png)
+
+**Yahan par aap apne bestie ya cutie ke liye ek pyara sa message likhein!** ✍️
+* **Description:** Landing page ka main welcome text introduction. Yahan aap unki dher saari tareef kar sakte hain, sweet lines likh sakte hain, ya phir unhe thoda bohot tease/tang karne ke liye funny inside jokes daal sakte hain!
+* **How to edit:** Antigravity se terminal chat me plain words me boleya: *"Hey Antigravity, custom modify main intro text: change name to Kabir and add a funny greeting card wishing him happy birthday"* or edit the `hero.introParas` text array in `birthdayData.ts` manually.
+
+---
+
+### 3. First Meeting Spot Story (Journey Page)
+![First Meeting Spot](./readme-images/first-meeting-spot.png)
+
+**Yahan par aap apne first meeting spot ya kisi special place ki story share karein!** 🗺️
+* **Description:** Journey timeline ka pehla story block jahan aap apni mulaqat ki sweet details, first impression text, ya kisi specific special memory place ko document kar sakte hain.
+* **How to edit:** Antigravity chat widget me explain karein: *"Hey Antigravity, edit first story block: set imageAlt to 'Cafe Coffee Day' and change lines to describe how we first met there by accident"* or edit the first story item in `journey.storyBlocks` in `birthdayData.ts` in the workspace.
+
+---
+
+### 4. Journey Story Lines Description (Journey Page)
+![Meeting Spot Description](./readme-images/meeting-spot-desc.png)
+
+**Yahan par aap apne meeting spot ya apni kisi bhi favorite place ki custom memory description likhein, jo bhi aapka dil chahe!** 📖
+* **Description:** Kahani timeline ke pehle story block ka detailed narrative text. Yahan aap us jagah ka mahol, wahan par aapki hui chats aur dher saari purani baatein paragraph forms me print kar sakte hain.
+* **How to edit:** Antigravity chat screen par brief karein: *"Hey Antigravity, update first story block text description to write a sweet short paragraph about how we used to spend hours sitting and sharing memes"* or change the array layout values inside `journey.storyBlocks[0].lines` inside `birthdayData.ts` manually.
+
+---
+
+### 5. Adventures Memory Card (Journey Page)
+![Unforgettable Adventures](./readme-images/unforgettable-adventures.png)
+
+**Yahan aap dono ki koi bahut chatpati (fun) ya unforgettable pic lagayein, jo aapke liye sabse memorable ho!** 📸
+* **Description:** Journey timeline ka dusra main card block jo aapki adventures, road trips, random outings, ya koi quirky fun moments represent karta hai. Yahan aap apni pasandida photo embed kar sakte hain.
+* **How to edit:** Antigravity chat screen par specify karein: *"Hey Antigravity, replace the second story block image with my holiday trip group photo"* or update the image path for the second item in `journey.storyBlocks[1].image` config array inside `birthdayData.ts` manually.
+
+---
+
+### 6. Adventures Story Description (Journey Page)
+![Adventures Description](./readme-images/adventures-desc.png)
+
+**Yahan par aap apni memories aur apni feelings ko khulkar express kar sakte hain!** 💖
+* **Description:** Kahani timeline ke dusre story block ka paragraph text segment. Yahan aap unhe ek sweet thank-you note likh sakte hain, batayein ki wo aapke liye kitne special hain, aur unke future ke liye pyare message likhein.
+* **How to edit:** Antigravity chat me instructions dein: *"Hey Antigravity, rewrite the text inside the second story paragraph to make it a deep, emotional thank-you paragraph expressing how grateful I am for their friendship"* or change the text array value inside `journey.storyBlocks[1].lines` inside `birthdayData.ts` manually.
+
+---
+
+### 7. Polaroid Photo Grid Gallery (Gallery Page)
+![Gallery Grid](./readme-images/gallery-placeholder-grid.png)
+
+**Yahan par aap dono ki sabse pyaari aur memorable photos lagayein!** 🖼️
+* **Description:** Grid segment jisme 6 floating polaroid photos render ho rahi hain. Custom image settings ke saath inka dynamic hover effect aur background support responsive aur alive dikta hai.
+* **How to edit:** Antigravity chat console me clear instuctions dein: *"Hey Antigravity, connect my uploaded pictures to these 6 polaroid slots in the gallery page"* or update parameters under `gallery.images` config inside `birthdayData.ts` for quick placeholder naming, and hook actual assets using local files mapping.
+
+---
+
+### 8. Background Music Player (Floating Player)
+![Floating Music Vinyl](./readme-images/floating-music-vinyl.png)
+
+**Yeh floating music, player button hai. Isme aap dono ka favorite song laga sakte hain jo aapne saath suna ho, ya saamne vaale (birthday person) ka koi favourite tune!** 🎵
+* **Description:** Website ke footer corner par ek premium custom-grooved spinning cd design jo click karne pe background media stream (Youtube player output) ko play/pause karta hai. **(💡 Tip: Aap is music player circle disk ke center me unki ya apni koi cute face photo bhi lagwa sakte hain jo gol-gol spin karegi!)**
+* **How to edit:** Antigravity chat board me simple input karein: *"Hey Antigravity, change background music video ID to: [Copied YouTube Video ID] and put my uploaded photo in the center of the spinning vinyl record"* or update the `gallery.youtubeMusicId` text variable setting inside `birthdayData.ts` manually.
+
+---
+
+### 9. Finale Heartfelt Message & Poetry (Finale Page)
+![Finale Wishes Letter](./readme-images/finale-wishes-letter.png)
+
+**Yahan aap apna final emotional birthday message, cute poems ya shayari, aur positive wishes likh sakte hain!** 💌
+* **Description:** Finale page ka central wishes structure. Yeh section teen components me divided hai: main greeting lines, custom double-spaced poems/lyrics block, aur bullet wishes list.
+* **How to edit:** Antigravity chat box me simple terms me bolyea: *"Hey Antigravity, update my finale wishes: write a sweet greeting letter, add 4 lines of matching poetry, and write down 2 funny wishes"* or customize the parameters inside `finale.letterParagraphs`, `finale.poem` and `finale.wishes` config values inside `birthdayData.ts` manually.
+
+---
+
+### 10. Final Memory Block Card (Finale Page)
+![Final Memory Card](./readme-images/final-memory-card.png)
+
+**Yahan par aap dono ki sabse best picture/photo, ya jo bhi surprise image aap lagana chahein, use lagayein!** ✨
+* **Description:** Website ke sabse final ending segment ka big polaroid card placeholder. Yeh photo scroll complete ho jaane par surface hoti hai, jo ki surprise closing element ki tarah act karti hai.
+* **How to edit:** Antigravity chat console me input karein: *"Hey Antigravity, replace the finale card background photo with my uploaded picture"* or edit the files mapping and paths inside the workspace.
+
+---
+
+### 11. Creator Badge & Footer Text (Finale Page)
+![Creator Badge & Footer](./readme-images/creator-badge.png)
+
+**Apna name (ya cute credit) aur dedication/footer details customize karein!** 🌸
+* **Description:** Website ke aakhiri page (Finale Page) par bottom me ek stylish creator badge aur credit text hai. Jaise: `CREATOR — YOUR NAME HERE` aur `made with ❤️ for a wonderful friend`.
+* **Creative Ideas:**
+  * Aap aur cute banane ke liye `YOUR NAME HERE` ki jagah: **YOUR LOVE**, **YOUR HG/HB**, **YOUR BF/GF**, ya apna actual name bhi likh sakte hain.
+  * Aur `made with ❤️ for` ke aage **"a wonderful friend"**, **"my favorite person"**, **"my heartbeat"** ya jo bhi line aapko sahi lage vo customize kar sakte hain!
+* **How to edit:** Antigravity chat box me direction dein:
+  * *"Hey Antigravity, change the creator badge and footer to show 'YOUR LOVE' and 'made with ❤️ for my favorite person'."*
+  * Manually edit karne ke liye, `src/config/birthdayData.ts` me `finale.creatorName` aur `finale.footerText` properties ko change kar sakte hain:
+    ```typescript
+    creatorName: "YOUR LOVE", // e.g., "YOUR NAME", "YOUR LOVE", or "YOUR HG/HB"
+    footerText: "made with ❤️ for my favorite person", // Apni pasand ka dedicated message
+    ```
+
+---
+
+## ⚡ Step 3: Deployment (Website Live Kaise Karein?)
+
+Jab aapki website customization complete ho jaye, toh ise net par live karne ke liye ye simple steps follow karein:
+
+1. **Antigravity Se Commit Karwayein:** Sabse pehle ChatGPT ya Cursor/Antigravity chat widget me AI coding assistant ko bol dein ki saare changes commit kar de. AI automatic aapke saare changes save aur commit kar dega.
+2. **YouTube Video Dekhlein:** Agar aapko hosting me koi confusion hai, toh YouTube par koi bhi simple video search karke dekh sakte hain: *"How to deploy website on Vercel"* ya *"Vercel par site kaise live karein"*.
+3. **Vercel Par Deploy Karein:** YouTube video ko refer karke **[Vercel](https://vercel.com/)** par free account banayein, aur apni GitHub repo link karke deploy button click karein.
+4. **Website Link Mil Jayegi:** Jaise hi hosting complete hogi, Vercel aapko ek working **live website link** dega.
+5. **Website Complete!:** Bas! Aapki website complete ho gayi hai. Ab aap is link ko kisi ko bhi directly bhej sakte hain aur celebrate kar sakte hain! ❤️
