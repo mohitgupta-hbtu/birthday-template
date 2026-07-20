@@ -8,12 +8,19 @@ Aapko code seekhne ya files me edits dhoondhne ki bilkul zaroorat nahi hai. Hum 
 
 ## 🚀 Step-by-Step Guide for Absolute Beginners
 
-### 🛠️ Step 1: Open Terminal & Clone Project
-Sabse pehle, apne **Antigravity / Cursor** editor ko open kijiye. Iske built-in sidebar ya built-in terminal me ye commands copy-paste karke execute kijiye:
+### 🛠️ Step 1: GitHub Repo Fork & Clone Karein
+
+Sabse pehle aapko is template ko apne GitHub account me copy karna hoga aur fir use system me open karna hoga:
+
+1. **GitHub repository ko Fork karein:** Target GitHub page ke top-right corner par jayein aur **Fork** button click karein:
+   ![Fork Button](./readme-images/fork-icon.png)
+   Isse ye repository automatically aapke personal GitHub account me copy ho jayegi.
+2. **Repository URL link copy karein:** Fork hone ke baad, apne account par redirect hone ke baad green **Code** button click karein aur HTTPS web clone URL (link) ko copy kar lein.
+3. **Antigravity / Cursor me open karein:** Apne computer par **Antigravity / Cursor** editor ko open kijiye, aur iske terminal me copied link se repository clone execute kijiye:
 
 ```bash
-# 1. Project directory clone karein
-git clone https://github.com/mohitgupta-hbtu/birthday-template.git
+# 1. Project directory clone karein (Apni copied URL ka use karein)
+git clone https://github.com/YOUR-USERNAME/birthday-template.git
 
 # 2. Project folder me enter karein
 cd birthday-template
